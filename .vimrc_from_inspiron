@@ -1,0 +1,329 @@
+"SET>>>
+"TAB PREFERENCES">>>
+set ts=4
+set sts=4
+set ai
+set si
+set sw=4
+set et
+set modeline
+"<<<
+" Директорія для складання swp файлів>>>
+" Директорія обов'язково має бути присутня для того щоб це працювало
+"
+set dir=~/.vim/swp
+"<<<
+" Backupdir>>>
+"set backupdir="/tmp,.,~/"
+"<<<
+" Лінія статусу >>>
+" Встановлення лінії статусу >>>
+" 
+" set statusline=%<[%n]\ %f\ %m%r%h%w\ %y\ %{&fileencoding}%=%b\ \ \ %c/%v\ %l/%L\ \ %P\ %a
+"
+"
+" hp mini preference
+" set statusline=%<%f%h%m%r\ %b\ %{&fileencoding}\ %l,%c%V\ %P
+" inpsiron preference
+set statusline=%<%f%h%m%r%=\ %b\ 0x%B\ %l,%c%V\ %P\ format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}"
+" <<<
+" Завжди показувати лінію статусу>>>
+set laststatus=2
+"<<<
+"<<<
+" Опція збереження ~ бекап файлів>>>
+set backup
+"<<<
+" Графічні опції>>>
+" Це не працює під моєю ОС @see :help guioptions
+set guioptions-=t
+" Видаляєм toolbar
+set guioptions-=T
+" Видаляєм іконку
+set guioptions-=i
+" Видаляєм головне меню
+set guioptions-=m
+"<<<
+" blinking in place of beep>>>
+set visualbell
+"<<<
+" Show line numbers>>>
+set number  
+"<<<
+" Ignore case when searching >>>
+set ignorecase
+"<<<
+" Highlight all matches>>>
+set hlsearch 
+"<<<
+" Wordwrap - off>>>
+set nowrap 
+"<<<
+" Встановлюєм helplang до чого це тут не знаю>>>
+set helplang=ru
+"<<<
+"MENU >>>
+set wildmenu
+set wcm=<Tab>
+"<<<
+" Fileencodings >>>
+"set fileencodings=ucs-bom,utf-8,default,cp1251,latin1
+set fileencodings=ucs-bom,utf-8,cp1251,koi8-r,cp866,latin1,utf-16
+"<<<
+">>>
+set fileformats=unix,dos,mac
+"<<<
+" Настраиваем переключение раскладок клавиатуры по <C-^> >>>
+"set keymap=russian-jcukenwin
+set keymap=ukrainian-jcuken
+
+" Раскладка по умолчанию - английская
+set iminsert=0
+set imsearch=0
+"<<<
+" Вертикальний diffsplit >>>
+set diffopt+=vertical 
+"<<<
+" Підсвічуєм лінію з курсором>>>
+set cursorline
+"<<<
+""<<<
+" Підключаєм filetype and indenting>>>
+filetype indent on
+filetype plugin on
+filetype on
+"<<<
+" Підключаєм синтаксис >>>
+syn on
+"<<<
+" Ініціалізація теми >>>
+if has('gui') && has('gui_running')
+    "colors kib_darktango "slate
+"    colors koehler
+    colors zellner
+else
+    "colors kib_darktango
+"    colors koehler
+    colors zellner
+    map q :q!<CR>
+endif
+"<<<
+" MAP>>>
+" Mapping F1 - F12>>>
+"nnoremap <F5> :make<CR>
+map <F5> :cnext<CR>
+map <F6> :cprev<CR>
+map <S-F5> :cnfile<CR>
+map <S-F6> :cpfile<CR>
+map <F3> :Hexplore<CR>
+map <C-F4> :confirm close<CR>
+cmap <C-F4> <ESC><C-F4>
+imap <C-F4> <ESC><C-F4>
+map <F2> :if expand("%") == ""<Bar>browse confirm w<Bar>else<Bar>confirm w<Bar>endif<CR>
+imap <F2> <ESC><F2>
+imap <F3> <ESC><F3>
+map <F4> :tabnew<CR>:e 
+map <S-F4> :e 
+map <S-F8> :emenu Encoding.<TAB>
+"nmap e :e 
+"<<<
+" Folding maps>>>
+map <S-Left> zc
+imap <S-Left> <ESC>zc
+map <S-Right> zo
+imap <S-Right> <ESC>zo
+"<<<
+" VCS mappings >>>
+let mapleader = ','
+nmap <Leader>va <Plug>VCSAdd 
+nmap <Leader>vn <Plug>VCSAnnotate 
+nmap <Leader>vc <Plug>VCSCommit 
+nmap <Leader>vd <Plug>VCSDiff 
+nmap <Leader>vg <Plug>VCSGotoOriginal 
+nmap <Leader>vG <Plug>VCSGotoOriginal! 
+nmap <Leader>vl <Plug>VCSLog 
+nmap <Leader>vL <Plug>VCSLock 
+nmap <Leader>vr <Plug>VCSReview 
+nmap <Leader>vs <Plug>VCSStatus 
+nmap <Leader>vu <Plug>VCSUpdate 
+nmap <Leader>vU <Plug>VCSUnlock 
+nmap <Leader>vv <Plug>VCSVimDiff 
+nmap <Leader>vR <Plug>VCSRevert 
+"<<<
+" Зручні mappings для роботи з split-ами>>>
+nmap <C-down>   <c-w>w
+nmap <C-up>     <c-w>W
+nmap <C-left>   <c-w>h
+nmap <C-right>  <c-w>l
+map + <C-w>+
+map _ <C-w>-
+"<<<
+" OTHER MAPPINGS>>>
+map <S-Insert> "+p
+imap <S-Insert> <ESC>"+p
+imap <C-o> <ESC>:call PhpDoc()<CR>
+nmap <C-l> :let &list=!&list<CR>
+imap <C-L> <ESC>:if &keymap == 'russian-jcukenwin' <BAR>set keymap=ukrainian-jcuken<BAR>else<BAR>set keymap=russian-jcukenwin<BAR>endif<CR>a
+map <Leader>t :ToggleWord<CR>
+map <C-c> "+y:let @*=@+<CR>
+map <Leader>r :call ResetSnippets()<CR>:e!<CR>
+map <F7> :Rake<CR>
+"set sp=1>&2\ \|tee
+"<<<
+"<<<
+" Настройки меню>>>
+menu &Encoding.&koi8-r       :e ++enc=koi8-r<CR>
+menu &Encoding.&windows-1251 :e ++enc=cp1251<CR>
+menu &Encoding.&ibm-866      :e ++enc=ibm866<CR>
+menu &Encoding.&utf-8        :e ++enc=utf-8 <CR>
+"<<<
+" Настройки скриптів>>>
+
+let g:csound_play_cmd='aplay'
+
+let g:author = "Olexiy Zamkoviy"
+let g:snips_author = g:author
+
+let g:footer = ""
+let g:load_template = 'ask'
+let g:email = "olexiy dot z at gmail dot com"
+let g:no_html_toolbar = 'yes'
+
+let g:xml_syntax_folding = 1
+"let g:netrw_ftp_cmd="ftp -p"
+let g:netrw_ftp_cmd="ftp"
+
+let did_menu_trans=1
+
+" Slimv >>>
+"let g:slimv_keybindings=2
+"let g:slimv_keybindings=0
+"let g:slimv_impl = 'cmucl'
+"let g:slimv_lisp = 'cmucl'
+"let g:slimv_debug = 1
+"let g:slimv_debug_client = 1
+"let g:slimv_client = 'python ~/.vim/ftplugin/slimv.py -r "konsole -T Slimv -e @p @s -l /usr/local/bin/scheme -s"'
+"let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
+"let g:slimv_repl_open = 0
+"let g:slimv_port = 3210
+"<<<
+" Nekthuth >>>
+
+let g:nekthuth_sbcl = "/home/html/bin/sb"
+let g:nekthuth_vsplit = 0
+let g:lisp_debug = 'Y'
+au FileType lisp map <C-J> :NekthuthSexp<CR>
+au FileType lisp map <C-E> :NekthuthTopSexp<CR>
+au FileType lisp map <F7> :NekthuthRemote<CR>
+
+"<<<
+" Limp >>>
+let g:auto_lisp_connection=1
+"<<<
+" DirDiff>>>
+let g:DirDiffExcludes='.svn,*.swp,*~'
+"<<<
+"let did_install_default_menus=1
+"let g:no_plugin_maps = 1
+"let g:no_html_tab_mapping=0
+"let g:no_html_toolbar=1
+" SNIPMATE>>>
+let g:snips_author = "Olexiy Zamkoviy"
+""<<<
+"<<<
+" Автокоманди >>>
+autocmd BufNewFile,BufRead *.py compiler python
+autocmd FileType {xml,xslt,html,mxml} setlocal iskeyword=@,-,\:,48-57,_,128-167,224-235
+autocmd FileType {orc,sco} compiler csound
+autocmd BufNewFile,BufRead *.orc,*.sco,*.csd compiler csound
+autocmd BufNewFile,BufRead *.orc,*.sco,*.csd set syntax=csound
+
+autocmd BufNewFile,BufRead *.mxml set ft=as
+autocmd BufNewFile,BufRead *.as,*.mxml set syn=as3
+autocmd BufNewFile,BufRead *.mxml compiler as
+
+autocmd BufNewFile,BufRead *.phtml set ft=php
+autocmd BufNewFile,BufRead /tmp/sql* set ft=sql
+au BufNewFile,BufRead *.asd,*.asdf set ft=lisp
+autocmd BufNewFile,BufRead *.haml setlocal foldmethod=indent
+autocmd BufNewFile,BufRead .stumpwmrc set ft=lisp
+
+" Ruby
+autocmd FileType ruby setlocal tags+=~/.gem/ruby/1.8/gems/tags,/var/lib/gems/1.8/gems/tags,/usr/local/lib/ruby/gems/1.9.1/gems/tags
+autocmd FileType ruby source ~/.vim/ftplugin/ruby/ruby_single_test.vim
+autocmd FileType ruby call S_(2)
+autocmd BufNewFile,BufRead *.erb setfiletype html.ruby
+
+" Lisp
+autocmd FileType lisp setlocal tags+=~/src/clbuild/source/tags
+autocmd BufNewFile,BufRead Nekthuth.buffer setlocal syn=off
+
+"au BufNewFile,BufRead *.html retab! 2
+"au BufNewFile,BufRead *.tpl set noet
+"au BufNewFile,BufRead *.tpl retab! 2
+"//au BufNewFile,BufRead *.tpl setlocal noet sw=2 ts=2 sts=2 autoindent indentexpr=""
+"<<<
+" Інше>>>
+function DoCommand(cmd)
+  exe a:cmd
+endfunction 
+
+function! S_(num)
+    exe "setlocal ts=".a:num
+    exe "setlocal sw=".a:num
+    exe "setlocal sts=".a:num
+endfunction
+
+"map <C-]> va}
+"map <C-[> vi}
+
+let b:path=$PROJECTDIR
+"system(". /home/html/.bash_project > /dev/null;echo $PROJECTDIR")
+if 0 && has('gui') && has('gui_running')
+    exec "cd " . b:path
+
+    function LoadSessionIfExists()
+        if filereadable("session.vim") && confirm("Load session ?", "&yes\n&no") == 1
+            source session.vim
+        endif
+    endfunction
+
+    function ConfirmSavingSession()
+        if filereadable("session.vim") && confirm("Save session ?", "&yes\n&no") == 1
+            "setlocal sessionoptions-=options
+            mksession! session.vim
+        endif
+    endfunction
+
+    autocmd VIMEnter * call LoadSessionIfExists()
+    autocmd VIMLeave * call ConfirmSavingSession()
+
+
+endif
+"<<<
+">>> ToggleWords
+let g:toggle_words_dict = {
+    \ 'sh' : [
+        \ ['-eq', '-ne'],
+        \ ['-n', '-z'],
+        \ ['=', '!='],
+        \ ['-gt', '-lt'],
+        \ ['-ge', '-le']
+    \ ],
+    \ 'lisp' : [
+        \ ['t', 'nil'],
+        \ ['if', 'unless']
+    \ ]}
+aut Filetype sh set iskeyword+=-
+""<<<
+">>> Moving lines
+nnoremap <C-S-DOWN> mz:m+<CR>`z==
+nnoremap <C-S-UP> mz:m-2<CR>`z==
+inoremap <C-S-DOWN> <Esc>:m+<CR>==gi
+inoremap <C-S-UP> <Esc>:m-2<CR>==gi
+vnoremap <C-S-DOWN> :m'>+<CR>gv=`<my`>mzgv`yo`z
+vnoremap <C-S-UP> :m'<-2<CR>gv=`>my`<mzgv`yo`z
+
+"<<<
+
+" vim:fdm=marker:fmr=>>>,<<<
