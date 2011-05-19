@@ -13,9 +13,6 @@ set modeline
 "
 set dir=~/.vim/swp
 "<<<
-" Backupdir>>>
-"set backupdir="/tmp,.,~/"
-"<<<
 " Лінія статусу >>>
 " Встановлення лінії статусу >>>
 " 
@@ -33,6 +30,9 @@ set laststatus=2
 "<<<
 " Опція збереження ~ бекап файлів>>>
 set backup
+"<<<
+" Backupdir>>>
+set backupdir=/tmp,.,~/
 "<<<
 " Графічні опції>>>
 " Це не працює під моєю ОС @see :help guioptions
