@@ -96,8 +96,6 @@ filetype on
 " Підключаєм синтаксис >>>
 syntax on
 "<<<
-
-
 " MAP>>>
 " Mapping F1 - F12>>>
 "nnoremap <F5> :make<CR>
@@ -117,11 +115,6 @@ imap <S-Left> <ESC>zc
 map <S-Right> zo
 imap <S-Right> <ESC>zo
 "<<<
-let mapleader="," 
-map <Leader>q :q<CR>
-map <Leader>l :let &list=!&list<CR>
-map <Leader>Q :q!<CR>
-map <Leader>t :ToggleWord<CR>
 " Зручні mappings для роботи з split-ами>>>
 nmap <C-down>   <c-w>w
 nmap <C-up>     <c-w>W
@@ -131,6 +124,10 @@ map + <C-w>+
 map _ <C-w>-
 "<<<
 " OTHER MAPPINGS>>>
+let mapleader="," 
+map <Leader>q :q<CR>
+map <Leader>l :let &list=!&list<CR>
+map <Leader>Q :q!<CR>
 ">>> Moving lines
 "nnoremap <C-S-DOWN> mz:m+<CR>`z==
 "nnoremap <C-S-UP> mz:m-2<CR>`z==
@@ -138,7 +135,12 @@ map _ <C-w>-
 "inoremap <C-S-UP> <Esc>:m-2<CR>==gi
 "vnoremap <C-S-DOWN> :m'>+<CR>gv=`<my`>mzgv`yo`z
 "vnoremap <C-S-UP> :m'<-2<CR>gv=`>my`<mzgv`yo`z
-
 "<<<
-
+" SCRIPTS MAPPINGS AND SETTINGS>>>
+" DirDiff http://www.vim.org/scripts/script.php?script_id=102 >>>
+let g:DirDiffExcludes='.svn,*.swp,*~,.git'
+"<<<
+" ToggleWord
+map <Leader>t :ToggleWord<CR>
+"<<<
 " vim:fdm=marker:fmr=>>>,<<<
