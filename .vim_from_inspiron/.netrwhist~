@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='ftp://www.nastavnik66.ru/'
+let g:netrw_dirhist_2='/home/html/projects/rails/sigpat/dashboard/spec/controllers'
+let g:netrw_dirhist_3='/usr/share/doc/bash/examples/startup-files'
+let g:netrw_dirhist_4='ftp://www.nastavnik66.ru/'
+let g:netrw_dirhist_5='/home/html/projects/rails/sigpat/dashboard/spec/controllers'
+let g:netrw_dirhist_6='ftp://www.nastavnik66.ru/'
+let g:netrw_dirhist_7='/etc/cron.weekly'
