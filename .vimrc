@@ -125,6 +125,7 @@ map _ <C-w>-
 "<<<
 " OTHER MAPPINGS>>>
 let mapleader="," 
+imap <C-L> <ESC>:if &keymap == 'russian-jcukenwin' <BAR>set keymap=ukrainian-jcuken<BAR>else<BAR>set keymap=russian-jcukenwin<BAR>endif<CR>a
 map <Leader>q :q<CR>
 map <Leader>l :let &list=!&list<CR>
 map <Leader>Q :q!<CR>
