@@ -137,11 +137,26 @@ map <Leader>Q :q!<CR>
 "vnoremap <C-S-DOWN> :m'>+<CR>gv=`<my`>mzgv`yo`z
 "vnoremap <C-S-UP> :m'<-2<CR>gv=`>my`<mzgv`yo`z
 "<<<
+" <<<
+" <<<
 " SCRIPTS MAPPINGS AND SETTINGS>>>
 " DirDiff http://www.vim.org/scripts/script.php?script_id=102 >>>
 let g:DirDiffExcludes='.svn,*.swp,*~,.git'
 "<<<
-" ToggleWord
+" ToggleWords http://www.vim.org/scripts/script.php?script_id=1676 >>>
 map <Leader>t :ToggleWord<CR>
+let g:toggle_words_dict = {
+    \ 'sh' : [
+        \ ['-eq', '-ne'],
+        \ ['-n', '-z'],
+        \ ['=', '!='],
+        \ ['-gt', '-lt'],
+        \ ['-ge', '-le']
+    \ ],
+    \ 'lisp' : [
+        \ ['t', 'nil'],
+        \ ['if', 'unless']
+    \ ]}
+"<<<
 "<<<
 " vim:fdm=marker:fmr=>>>,<<<
