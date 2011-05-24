@@ -158,5 +158,9 @@ let g:toggle_words_dict = {
         \ ['if', 'unless']
     \ ]}
 "<<<
+" VimWiki http://www.vim.org/scripts/script.php?script_id=2226 >>>
+let g:vimwiki_list = [{'path': '~/notes/'}]
+let g:vimwiki_folding = 1
+"<<<
 "<<<
 " vim:fdm=marker:fmr=>>>,<<<
