@@ -1,4 +1,7 @@
 "SET>>>
+"FONT >>>
+set guifont=Monospace\ 8
+"<<<
 "TAB PREFERENCES">>>
 set ts=4
 set sts=4
@@ -22,7 +25,8 @@ set dir=~/.vim/swp
 " hp mini preference
 " set statusline=%<%f%h%m%r\ %b\ %{&fileencoding}\ %l,%c%V\ %P
 " inpsiron preference
-set statusline=%<%f%h%m%r%=\ %b\ 0x%B\ %l,%c%V\ %P\ format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}"
+" Depends on cdargs
+set statusline=%{CdargsCurrentDirectory()}\ %<%f%h%m%r%=\ %5b\ 0x%-5B\ %5.4l,%4.4c\ %P\ format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}"
 " <<<
 " Завжди показувати лінію статусу>>>
 set laststatus=2
@@ -56,8 +60,8 @@ set ignorecase
 " Highlight all matches>>>
 set hlsearch 
 "<<<
-" Wordwrap - off>>>
-set nowrap 
+" Wordwrap - on>>>
+set wrap 
 "<<<
 " Встановлюєм helplang до чого це тут не знаю>>>
 set helplang=ru

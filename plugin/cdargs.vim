@@ -21,10 +21,9 @@
 "   1.2
 "     Fix bookmarks that have a space in their path
 "     Better error handling if a subpath cannot be found
-
-" Todo
-"   - Figure out bang commands
-"   - Make completion functions and execute global(?)
+"
+"   1.3
+"     Added Cdadd for adding a bookmark for the current directory
 
 " Exit quickly when:
 " - this plugin was already loaded (or disabled)
@@ -36,6 +35,7 @@ let g:loaded_cdargs = 1
 
 " What file to read
 let s:cdargs_file = $HOME . '/.cdargs'
+let g:cdargs_current_directory = ''
 
 " Bookmark caching
 let s:cached_bookmarks = {}
@@ -164,6 +164,14 @@ function! s:file_completion(ArgLead, CmdLine, CursorPos)
   return s:bookmark_completion(a:ArgLead, 1)
 endfunction
 
+" Custom completion for the name of the current directory
+function! s:cwd_completion(ArgLead, CmdLine, CursorPos)
+  let l:cwd = s:trim_trailing_slash(getcwd())
+  let l:idx = strridx(l:cwd, "/")
+
+  return strpart(l:cwd, l:idx + 1)
+endfunction
+
 " ...
 "
 " ""              => [ "", ""]
@@ -203,9 +211,34 @@ function! s:path_for(raw)
   end
 endfunction
 
+" Add current directory to bookmarks
+function! s:add(bookmark)
+  if stridx(a:bookmark, " ") >= 0
+    call s:error("Bookmark must be a single word")
+    return ''
+  end
+
+  let l:path = get(s:bookmarks(), a:bookmark, '')
+  let l:cwd  = getcwd()
+
+  if strlen(l:path)
+    call s:error("Bookmark already exists: " . a:bookmark)
+  elseif !strlen(l:cwd)
+    " Happens when the current directory has been deleted
+    call s:error("Unable to determine current directory")
+  else
+    echo system("cdargs -a ':" . a:bookmark . ":" . l:cwd . "'")
+  end
+endfunction
+
+" Execute the vim command with the bookmark's path
 function! s:execute(command, raw)
   " Escape spaces in the path
   let l:path = substitute(s:path_for(a:raw), " ", '\\ ', "g")
+
+  if a:command == 'cd'
+    let g:cdargs_current_directory = split(a:raw, '/')[0]
+  endif
 
   if strlen(l:path)
     try
@@ -216,6 +249,10 @@ function! s:execute(command, raw)
   end
 endfunction
 
+function! CdargsCurrentDirectory()
+  return g:cdargs_current_directory
+endfunction
+
 " Change working directory to bookmark or it's subpath
 command! -nargs=1 -complete=customlist,s:directory_completion Cdb call s:execute('cd', <f-args>)
 
@@ -224,3 +261,6 @@ command! -nargs=1 -complete=customlist,s:file_completion Eb call s:execute('edit
 
 " Edit file under a bookmark's path in a new tab
 command! -nargs=1 -complete=customlist,s:file_completion Tb call s:execute('tabedit', <f-args>)
+
+" Add current directory to bookmarks
+command! -nargs=1 -complete=custom,s:cwd_completion Cdadd call s:add(<f-args>)
