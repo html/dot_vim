@@ -47,6 +47,8 @@ set guioptions-=T
 "set guioptions-=i
 " Видаляєм головне меню
 "set guioptions-=m
+" Видаляєм графіку з табів, тепер вони текстові
+set guioptions-=e
 "<<<
 " blinking in place of beep>>>
 set visualbell
