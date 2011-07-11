@@ -1,3 +1,6 @@
+" Colorscheme >>>
+colorscheme evening
+"<<<
 "SET>>>
 "FONT >>>
 set guifont=Monospace\ 8
@@ -26,7 +29,9 @@ set dir=~/.vim/swp
 " set statusline=%<%f%h%m%r\ %b\ %{&fileencoding}\ %l,%c%V\ %P
 " inpsiron preference
 " Depends on cdargs
-set statusline=%{CdargsCurrentDirectory()}\ %<%f%h%m%r%=\ %5b\ 0x%-5B\ %5.4l,%4.4c\ %P\ format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}"
+"set statusline=%{CdargsCurrentDirectory()}\ %<%f%h%m%r%=\ %5b\ 0x%-5B\ %5.4l,%4.4c\ %P\ format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}"
+" Set temporary to show full file name
+set statusline=%{CdargsCurrentDirectory()}\ %<%f%h%m%r%=
 " <<<
 " Завжди показувати лінію статусу>>>
 set laststatus=2
@@ -113,7 +118,6 @@ map <F3> :Hexplore<CR>
 map <F2> :if expand("%") == ""<Bar>browse confirm w<Bar>else<Bar>confirm w<Bar>endif<CR>
 imap <F2> <ESC><F2>
 imap <F3> <ESC><F3>
-map <S-F8> :emenu Encoding.<TAB>
 "<<<
 " Folding maps>>>
 map <S-Left> zc
@@ -167,6 +171,7 @@ let g:toggle_words_dict = {
 " VimWiki http://www.vim.org/scripts/script.php?script_id=2226 >>>
 let g:vimwiki_list = [{'path': '~/notes/'}]
 let g:vimwiki_folding = 1
+let g:vimwiki_browsers = ['firefox', 'opera', 'google-chrome']
 "<<<
 "<<<
 " vim:fdm=marker:fmr=>>>,<<<
