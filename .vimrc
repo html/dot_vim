@@ -1,9 +1,12 @@
 " Colorscheme >>>
-colorscheme evening
+colorscheme morning
+"<<<
+" Abbreviations >>>
+cabbr t tabnew
 "<<<
 "SET>>>
 "FONT >>>
-set guifont=Monospace\ 8
+set guifont=Monospace\ 14
 "<<<
 "TAB PREFERENCES">>>
 set ts=4
@@ -171,7 +174,7 @@ let g:toggle_words_dict = {
 " VimWiki http://www.vim.org/scripts/script.php?script_id=2226 >>>
 let g:vimwiki_list = [{'path': '~/notes/'}]
 let g:vimwiki_folding = 1
-let g:vimwiki_browsers = ['firefox', 'opera', 'google-chrome']
+let g:vimwiki_browsers = ['google-chrome', 'firefox', 'opera']
 "<<<
 "<<<
 " vim:fdm=marker:fmr=>>>,<<<
